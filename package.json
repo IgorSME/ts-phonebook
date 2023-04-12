@@ -2,7 +2,7 @@
   "name": "ts-phonebook",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "homepage": "https://igorsme.github.io/ts-phonebook/",  "dependencies": {
     "@emotion/styled": "^11.10.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -19,11 +19,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
-
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "deploy": "npm run build && gh-pages -d dist",
+    "build": "tsc --project ./tsconfig.json --outDir ./dist"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +46,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "eslint": "^8.38.0"
+    "eslint": "^8.38.0",
+    "gh-pages": "^5.0.0"
   }
 }
