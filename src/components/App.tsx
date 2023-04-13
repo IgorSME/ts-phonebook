@@ -3,9 +3,10 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
-import { Container } from 'App.styled';
+import { Container } from '../App.styled';
+import { IContactFormState, IState } from '../types/appTypes';
 
-export class App extends Component {
+export class App extends Component<{},IState> {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -16,7 +17,7 @@ export class App extends Component {
     filter: '',
   };
 
-  addNewContact = ({ name, number }) => {
+  addNewContact = ({ name, number }:IContactFormState) => {
     if (
       this.state.contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -28,7 +29,7 @@ export class App extends Component {
     const newContact = { id: nanoid(), name, number };
     this.setState(({ contacts }) => ({ contacts: [newContact, ...contacts] }));
   };
-  onChangeFilter = e => {
+  onChangeFilter = (e:React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ filter: e.currentTarget.value });
   };
 
@@ -40,7 +41,7 @@ export class App extends Component {
     );
   };
 
-  onDeleteContact = id => {
+  onDeleteContact = (id:string) => {
     this.setState(({ contacts }) => ({
       contacts: contacts.filter(contact => contact.id !== id),
     }));

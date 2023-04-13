@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { IContactFormProps,IContactFormState } from '../../types/appTypes';
 import { Form, Label, Input, Button } from './ContactForm.styled';
 
-export class ContactForm extends Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-
-  state = {
+export class ContactForm extends Component<IContactFormProps,IContactFormState> {
+ state = {
     name: '',
     number: '',
   };
 
-  handleChange = e => {
+  handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-  handleSubmit = e => {
+  handleSubmit = (e:React.FormEvent) => {
     e.preventDefault();
     this.props.onSubmit(this.state);
     this.reset();
